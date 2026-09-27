@@ -8,7 +8,7 @@ class basemodel(models.Model):
         abstract = True
 
 class Priority(basemodel):
-    Priority_Name = models.CharField(max_length=150)
+    priority_name = models.CharField(max_length=150)
 
     class Meta:
         verbose_name_plural = "Priorities"  
@@ -38,7 +38,7 @@ class Task(basemodel):
     ],
     default="pending"
     )
-    Category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     priority = models.ForeignKey(Priority, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -46,7 +46,7 @@ class Task(basemodel):
     
 
 class Note(basemodel):
-    task = models.CharField(max_length=150)
+    task = models.ForeignKey(Task   , on_delete=models.CASCADE)
     content = models.TextField(blank=True, null=True)
 
     def __str__(self):
