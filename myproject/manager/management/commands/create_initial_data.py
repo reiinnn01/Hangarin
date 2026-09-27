@@ -2,7 +2,7 @@ import random
 from django.core.management.base import BaseCommand
 from faker import Faker
 from django.utils import timezone
-from manager.models import Task, Notes, SubTask
+from manager.models import Task, Note, SubTask, Category, Priority
 
 class Command(BaseCommand):
     help = 'Create initial data for the application'
@@ -14,12 +14,17 @@ class Command(BaseCommand):
 
     def create_task(self, count):
         fake = Faker()
+        categories = list(Category.objects.all())
+        priorities = list(Priority.objects.all())
+
         for _ in range(count):
             Task.objects.create(
                 title = fake.sentence(nb_words=5),
                 status = fake.random_element(elements=["Pending", "In Progress", "Completed"]),
                 description = fake.paragraph(nb_sentences=3),
-                deadline = timezone.make_aware(fake.date_time_this_month())
+                deadline = timezone.make_aware(fake.date_time_this_month()),
+                category = random.choice(categories),
+                priority = random.choice(priorities)  
             )
         self.stdout.write(self.style.SUCCESS(
         'Initial data for Task created successfully.'))
@@ -28,12 +33,12 @@ class Command(BaseCommand):
         fake = Faker()
         tasks = list(Task.objects.all())
         for _ in range(count):
-            Notes.objects.create(
+            Note.objects.create(
                 task = random.choice(tasks),
                 content = fake.paragraph(nb_sentences=3)
             )
         self.stdout.write(self.style.SUCCESS(
-        'Initial data for notes created successfully.'))
+        'Initial data for note created successfully.'))
 
     def create_subtask(self, count):
         fake = Faker()
