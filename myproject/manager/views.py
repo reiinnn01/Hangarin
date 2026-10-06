@@ -7,7 +7,7 @@ from django.views.generic.list import ListView
 class TaskView(LoginRequiredMixin, ListView):
     model = Task
     context_object_name = 'tasks'
-    template_name = "Task.html"
+    template_name = "task.html"
 
     def get_queryset(self):
         qs = super().get_queryset()
@@ -72,7 +72,7 @@ class TaskView(LoginRequiredMixin, ListView):
 class SubTaskView(LoginRequiredMixin, ListView):
     model = SubTask
     context_object_name = 'subtasks'
-    template_name = "SubTask.html"
+    template_name = "subtask.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -117,7 +117,7 @@ class SubTaskView(LoginRequiredMixin, ListView):
 class NoteView(LoginRequiredMixin, ListView):
     model = Note
     context_object_name = 'notes'
-    template_name = "Note.html"
+    template_name = "note.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -162,7 +162,7 @@ class NoteView(LoginRequiredMixin, ListView):
 class CategoryView(LoginRequiredMixin, ListView):
     model = Category
     context_object_name = 'categories'
-    template_name = "Category.html"
+    template_name = "category.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -202,7 +202,7 @@ class CategoryView(LoginRequiredMixin, ListView):
 class PriorityView(LoginRequiredMixin, ListView):
     model = Priority
     context_object_name = 'priorities'
-    template_name = "Priority.html"
+    template_name = "priority.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
