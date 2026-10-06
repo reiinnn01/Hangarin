@@ -11,7 +11,7 @@
         {% for category in categories%}
         <div class="cards">
             <a href="?selected={{ category.id }}" class="link">
-                <span class="name">{{ category.category_name }}</span>
+                <span class="title">{{ category.category_name }}</span>
             </a>
         </div>
         {% empty %}

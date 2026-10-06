@@ -56,16 +56,18 @@
                     {% endfor %}
                 </select>
             </div>
-            <label>Parent Task</label>
-            <select name="task">
-                <option value="">Select Task</option>
-                {% for t in tasks %}
-                    <option value="{{ t.id }}"
-                        {% if selected_subtask.parent_task_id == t.id %}selected{% endif %}>
-                        {{ t.title }}
-                    </option>
-                {% endfor %}
-            </select>
+            <div class="form-group">
+                <label>Parent Task</label>
+                <select name="task">
+                    <option value="">Select Task</option>
+                    {% for t in tasks %}
+                        <option value="{{ t.id }}"
+                            {% if selected_subtask.parent_task_id == t.id %}selected{% endif %}>
+                            {{ t.title }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
             <button type="submit" name="action" value="update" class="save-btn">Save Changes</button>
             <div class="delete-container">
                 <button type="submit" name="action" value="delete" class="delete-btn">Delete Task</button>

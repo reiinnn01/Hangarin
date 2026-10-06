@@ -11,7 +11,7 @@
         {% for priority in priorities%}
         <div class="cards">
             <a href="?selected={{ priority.id }}" class="link">
-                <span class="name">{{ priority.priority_name }}</span>
+                <span class="title">{{ priority.priority_name }}</span>
             </a>
         </div>
         {% empty %}
