@@ -610,3 +610,48 @@ body {
     background-color: #202020;
     border-color: #666666;
 }
+
+@media (max-width: 768px) {
+
+    .sidebar-left {
+        position: relative;
+        width: 100%;
+        height: auto;
+        padding: 8px;
+    }
+
+    .main {
+        margin: 15px 10px 0;
+        min-height: calc(100vh - 15px);
+        padding: 15px;
+        border-radius: 10px;
+    }
+
+    .main.expanded {
+        margin-right: 10px;
+    }
+
+    .sidebar-right {
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        z-index: 20;
+    }
+
+}
+
+@media (max-width: 1000px) {
+    .sidebar-left {
+        width: 200px;
+    }
+    .main {
+        margin-left: 215px;
+        margin-right: 15px;
+    }
+    .main.expanded {
+        margin-right: 15px;
+    }
+    .sidebar-right {
+        width: 300px;
+    }
+}
