@@ -4,10 +4,42 @@
 
 {% block main_content %}
 <div class="main {% if not selected_subtask %}expanded{% endif %}">
+    <div class="list-title-area">
+        <h2>Subtasks</h2>
+    </div>
+    <form method="GET" class="task-controls">
+        <select name="status" onchange="this.form.submit()">
+            <option value="">All Status</option>
+            {% for value, label in status_choices %}
+                <option value="{{ value }}"
+                    {% if request.GET.status == value %}selected{% endif %}>
+                    {{ label }}
+                </option>
+            {% endfor %}
+        </select>
+        <select name="task" onchange="this.form.submit()">
+            <option value="">All Tasks</option>
+            {% for task in tasks %}
+                <option value="{{ task.id }}"
+                    {% if request.GET.task == task.id|stringformat:"s" %}selected{% endif %}>
+                    {{ task.title }}
+                </option>
+            {% endfor %}
+        </select>
+        <select name="sort" onchange="this.form.submit()">
+            <option value="">Sort by</option>
+            <option value="title" {% if request.GET.sort == "title" %}selected{% endif %}>
+                Title
+            </option>
+            <option value="created" {% if request.GET.sort == "created" %}selected{% endif %}>
+                Date Created
+            </option>
+            <option value="updated" {% if request.GET.sort == "updated" %}selected{% endif %}>
+                Last Updated
+            </option>
+        </select>
+    </form>
     <div class="list">
-        <div class="list-title-area">
-            <h2>Subtasks</h2>
-        </div>
         {% for subtask in subtasks %}
         <div class="cards">
             <a href="?selected={{ subtask.id }}" class="link">

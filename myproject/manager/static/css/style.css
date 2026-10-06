@@ -11,53 +11,38 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-
     height: 100vh;
     width: 250px;
-
     background-color: #202020;
-
     padding: 6px;
     margin: 0;
-
     box-sizing: border-box;
-
     font-family: "Segoe UI", sans-serif;
 }
 
 .user-profile-dropdown {
     position: relative;
-
     margin: 0;
     padding: 0 0 10px;
-
     border-bottom: 1px solid #323232;
 }
 
 .user-profile {
     display: inline-flex;
     align-items: center;
-
     width: 100%;
     box-sizing: border-box;
-
     margin: 0;
     padding: 7px 9px;
-
     gap: 10px;
-
     border: none;
     border-radius: 8px;
-
     color: #BBBBBB;
-
     cursor: pointer;
     list-style: none;
-
     font-family: "Segoe UI", sans-serif;
     font-size: 16px;
     font-weight: 500;
-
     transition:
         background-color 0.15s ease,
         color 0.15s ease;
@@ -94,14 +79,12 @@ body {
 .profile-pic {
     width: 48px;
     height: 48px;
-
     border-radius: 50%;
     object-fit: cover;
 }
 
 .user-profile p {
     margin: 0;
-
     font-family: "Segoe UI", sans-serif;
     font-size: 16px;
     font-weight: 500;
@@ -109,42 +92,27 @@ body {
 
 .dropdown-menu {
     position: absolute;
-
     top: calc(100% + 6px);
     left: 0;
-
     width: 100%;
-
     background: #292929;
-
     border-radius: 10px;
-
     padding: 6px;
-
     box-sizing: border-box;
-
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-
     z-index: 10;
-
     font-family: "Segoe UI", sans-serif;
 }
 
 .dropdown-menu a {
     display: block;
-
     padding: 10px 12px;
-
     color: #BBBBBB;
-
     text-decoration: none;
-
     border: none;
     border-radius: 7px;
-
     font-family: "Segoe UI", sans-serif;
     font-size: 15px;
-
     transition:
         background-color 0.15s ease,
         color 0.15s ease;
@@ -162,19 +130,13 @@ body {
 
 .options a {
     display: block;
-
     color: #AAAAAA;
-
     text-decoration: none;
-
     font-family: "Segoe UI", sans-serif;
     font-size: 16px;
     font-weight: 400;
-
     padding: 11px 12px;
-
     border-radius: 8px;
-
     transition:
         background-color 0.15s ease,
         color 0.15s ease;
@@ -195,33 +157,22 @@ body {
     color: #ffffff;
 }
 
-
 /* middle sheeett*/
-
 .main {
     margin-left: 270px;
     margin-right: 320px;
     margin-top: 40px;
-
     max-width: 2500px;
     height: calc(100vh - 80px);
-
     box-sizing: border-box;
-
     background-color: #1c1c1c;
-
     padding: 25px;
-
     border-radius: 12px;
-
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-
     display: flex;
     flex-direction: column;
     gap: 15px;
-
     font-family: "Segoe UI", sans-serif;
-
     transition: margin-right 0.3s ease;
 }
 
@@ -229,16 +180,55 @@ body {
     margin-right: 40px;
 }
 
+.task-controls {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 0 4px 12px;
+}
+
+.task-controls select {
+    min-width: 130px;
+    padding: 8px 11px;
+    background-color: #242424;
+    color: #BBBBBB;
+    border: 1px solid #383838;
+    border-radius: 7px;
+    font-family: "Segoe UI", sans-serif;
+    font-size: 13px;
+    outline: none;
+    cursor: pointer;
+    transition:
+        background-color 0.15s ease,
+        border-color 0.15s ease,
+        color 0.15s ease;
+}
+
+.task-controls select:hover {
+    background-color: #2b2b2b;
+    border-color: #464646;
+    color: #ffffff;
+}
+
+.task-controls select:focus {
+    background-color: #292929;
+    border-color: #666666;
+    color: #ffffff;
+}
+
+.task-controls select option {
+    background-color: #1c1c1c;
+    color: #ffffff;
+    font-family: "Segoe UI", sans-serif;
+}
+
 .list {
     display: flex;
     flex-direction: column;
-
     overflow-y: auto;
-
     flex-grow: 1;
-
     padding-right: 6px;
-
     font-family: "Segoe UI", sans-serif;
 }
 
@@ -261,17 +251,13 @@ body {
 
 .list-title-area {
     padding: 5px 4px 15px;
-
     margin-bottom: 5px;
-
     border-bottom: 1px solid #323232;
 }
 
 .list-title-area h2 {
     margin: 0;
-
     color: #ffffff;
-
     font-family: "Segoe UI", sans-serif;
     font-size: 18px;
     font-weight: 600;
@@ -279,35 +265,23 @@ body {
 
 .cards {
     width: 100%;
-
     margin-bottom: 8px;
-
     box-sizing: border-box;
 }
 
 .link {
     display: flex;
     flex-direction: column;
-
     gap: 9px;
-
     width: 100%;
-
     box-sizing: border-box;
-
     padding: 13px 15px;
-
     background-color: #242424;
-
     border: 1px solid transparent;
     border-radius: 9px;
-
     text-decoration: none !important;
-
     color: #BBBBBB !important;
-
     font-family: "Segoe UI", sans-serif;
-
     transition:
         background-color 0.15s ease,
         border-color 0.15s ease,
@@ -316,60 +290,42 @@ body {
 
 .link:hover {
     background-color: #2b2b2b;
-
     border-color: #383838;
-
     transform: translateY(-1px);
 }
 
 .title {
     color: #ffffff;
-
     font-family: "Segoe UI", sans-serif;
     font-size: 15px;
     font-weight: 600;
-
     line-height: 1.4;
-
     word-break: break-word;
 }
 
 .meta {
     display: flex;
-
     align-items: center;
-
     flex-wrap: wrap;
-
     gap: 7px;
-
     color: #888888;
-
     font-family: "Segoe UI", sans-serif;
     font-size: 12px;
 }
 
 .meta > span {
     display: inline-flex;
-
     align-items: center;
-
     padding: 4px 8px;
-
     background-color: #1d1d1d;
-
     border-radius: 5px;
-
     line-height: 1.2;
 }
 
 .description {
     max-width: 300px;
-
     overflow: hidden;
-
     text-overflow: ellipsis;
-
     white-space: nowrap;
 }
 
@@ -383,24 +339,15 @@ body {
 
 .add input {
     width: 100%;
-
     box-sizing: border-box;
-
     padding: 11px 13px;
-
     font-family: "Segoe UI", sans-serif;
     font-size: 14px;
-
     color: #ffffff;
-
     background-color: #242424;
-
     border: 1px solid #383838;
-
     border-radius: 8px;
-
     outline: none;
-
     transition:
         background-color 0.15s ease,
         border-color 0.15s ease;
@@ -421,57 +368,38 @@ body {
 
 .empty-message {
     margin: 10px 0;
-
     padding: 12px;
-
     color: #777777;
-
     font-family: "Segoe UI", sans-serif;
     font-size: 14px;
 }
 
-
 /* kanann*/
-
 .sidebar-right {
     position: fixed;
-
     right: 0;
     top: 0;
-
     width: 320px;
     height: 100vh;
-
     padding: 18px 20px;
-
     box-sizing: border-box;
-
     background-color: #202020;
-
     color: #BBBBBB;
-
     border-left: 1px solid #323232;
-
     overflow-y: auto;
-
     font-family: "Segoe UI", sans-serif;
 }
 
 .sidebar-header {
     position: relative;
-
     padding: 6px 4px 16px;
-
     margin-bottom: 22px;
-
     border-bottom: 1px solid #323232;
 }
 
 .sidebar-header h3 {
     margin: 0;
-
     color: #ffffff;
-
     font-family: "Segoe UI", sans-serif;
     font-size: 17px;
     font-weight: 600;
@@ -479,29 +407,19 @@ body {
 
 .close-sidebar-btn {
     position: absolute;
-
     top: 10px;
     right: 10px;
-
     display: flex;
-
     align-items: center;
     justify-content: center;
-
     width: 30px;
     height: 30px;
-
     color: #888888;
-
     text-decoration: none;
-
     font-family: "Segoe UI", sans-serif;
     font-size: 24px;
-
     line-height: 1;
-
     border-radius: 7px;
-
     transition:
         background-color 0.15s ease,
         color 0.15s ease;
@@ -514,25 +432,19 @@ body {
 
 .sidebar-form {
     display: flex;
-
     flex-direction: column;
-
     gap: 17px;
-
     font-family: "Segoe UI", sans-serif;
 }
 
 .sidebar-form .form-group {
     display: flex;
-
     flex-direction: column;
-
     gap: 7px;
 }
 
 .sidebar-form label {
     color: #999999;
-
     font-family: "Segoe UI", sans-serif;
     font-size: 13px;
     font-weight: 500;
@@ -546,24 +458,15 @@ body {
 .sidebar-form input,
 .sidebar-form select {
     width: 100%;
-
     padding: 10px 12px;
-
     box-sizing: border-box;
-
     background-color: #1c1c1c;
-
     color: #ffffff;
-
     border: 1px solid #383838;
-
     border-radius: 8px;
-
     font-family: "Segoe UI", sans-serif;
     font-size: 14px;
-
     outline: none;
-
     transition:
         border-color 0.15s ease,
         background-color 0.15s ease;
@@ -586,41 +489,28 @@ body {
 
 .sidebar-form select option {
     background-color: #1c1c1c;
-
     color: #ffffff;
-
     font-family: "Segoe UI", sans-serif;
 }
 
 .sidebar-actions {
     display: flex;
-
     flex-direction: column;
-
     gap: 9px;
-
     margin-top: 8px;
 }
 
 .sidebar-form .save-btn {
     width: 100%;
-
     padding: 11px;
-
     background-color: #ffffff;
-
     color: #202020;
-
     border: none;
-
     border-radius: 8px;
-
     font-family: "Segoe UI", sans-serif;
     font-size: 14px;
     font-weight: 600;
-
     cursor: pointer;
-
     transition:
         background-color 0.15s ease,
         transform 0.15s ease;
@@ -636,22 +526,14 @@ body {
 
 .sidebar-form .delete-btn {
     width: 100%;
-
     padding: 10px;
-
     background-color: transparent;
-
     color: #d66a63;
-
     border: 1px solid #4a302e;
-
     border-radius: 8px;
-
     font-family: "Segoe UI", sans-serif;
     font-size: 14px;
-
     cursor: pointer;
-
     transition:
         background-color 0.15s ease,
         border-color 0.15s ease,
@@ -660,39 +542,25 @@ body {
 
 .sidebar-form .delete-btn:hover {
     background-color: #2d2020;
-
     border-color: #70403c;
-
     color: #ef7b73;
 }
 
 .inputarea {
     width: 100%;
-
     min-height: 80px;
     max-height: 160px;
-
     padding: 10px 12px;
-
     box-sizing: border-box;
-
     background-color: #1c1c1c;
-
     color: #ffffff;
-
     border: 1px solid #383838;
-
     border-radius: 8px;
-
     font-family: "Segoe UI", sans-serif;
     font-size: 14px;
-
     line-height: 1.4;
-
     resize: vertical;
-
     outline: none;
-
     transition:
         border-color 0.15s ease,
         background-color 0.15s ease;

@@ -11,14 +11,30 @@ class TaskView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         qs = super().get_queryset()
-        query = self.request.GET.get('q')
-        if query:
-            qs = qs.filter(
-                Q(title__icontains=query) |
-                Q(category__icontains=query) |
-                Q(status__icontains=query)
-            )
-        return qs 
+        status = self.request.GET.get('status')
+        priority = self.request.GET.get('priority')
+        category = self.request.GET.get('category')
+        sort = self.request.GET.get('sort')
+
+        if status:
+            qs = qs.filter(status=status)
+
+        if priority:
+            qs = qs.filter(priority_id=priority)
+
+        if category:
+            qs = qs.filter(category_id=category)
+
+        if sort == 'title':
+            qs = qs.order_by('title')
+        elif sort == 'deadline':
+            qs = qs.order_by('deadline')
+        elif sort == 'created':
+            qs = qs.order_by('-created_at')
+        elif sort == 'updated':
+            qs = qs.order_by('-updated_at')
+
+        return qs
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -74,6 +90,27 @@ class SubTaskView(LoginRequiredMixin, ListView):
     context_object_name = 'subtasks'
     template_name = "subtask.html"
 
+    def get_queryset(self):
+        qs = super().get_queryset()
+        status = self.request.GET.get('status')
+        task = self.request.GET.get('task')
+        sort = self.request.GET.get('sort')
+
+        if status:
+            qs = qs.filter(status=status)
+
+        if task:
+            qs = qs.filter(parent_task_id=task)
+
+        if sort == 'title':
+            qs = qs.order_by('title')
+        elif sort == 'created':
+            qs = qs.order_by('-created_at')
+        elif sort == 'updated':
+            qs = qs.order_by('-updated_at')
+
+        return qs
+    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         selected_id = self.request.GET.get('selected')
@@ -118,6 +155,23 @@ class NoteView(LoginRequiredMixin, ListView):
     model = Note
     context_object_name = 'notes'
     template_name = "note.html"
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        task = self.request.GET.get('task')
+        sort = self.request.GET.get('sort')
+
+        if task:
+            qs = qs.filter(task_id=task)
+
+        if sort == 'created':
+            qs = qs.order_by('-created_at')
+        elif sort == 'updated':
+            qs = qs.order_by('-updated_at')
+        elif sort == 'content':
+            qs = qs.order_by('content')
+
+        return qs
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -164,6 +218,19 @@ class CategoryView(LoginRequiredMixin, ListView):
     context_object_name = 'categories'
     template_name = "category.html"
 
+    def get_queryset(self):
+        qs = super().get_queryset()
+        sort = self.request.GET.get('sort')
+
+        if sort == 'name':
+            qs = qs.order_by('category_name')
+        elif sort == 'created':
+            qs = qs.order_by('-created_at')
+        elif sort == 'updated':
+            qs = qs.order_by('-updated_at')
+
+        return qs
+    
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         selected_id = self.request.GET.get('selected')
@@ -203,6 +270,19 @@ class PriorityView(LoginRequiredMixin, ListView):
     model = Priority
     context_object_name = 'priorities'
     template_name = "priority.html"
+
+    def get_queryset(self):
+        qs = super().get_queryset()
+        sort = self.request.GET.get('sort')
+
+        if sort == 'name':
+            qs = qs.order_by('priority_name')
+        elif sort == 'created':
+            qs = qs.order_by('-created_at')
+        elif sort == 'updated':
+            qs = qs.order_by('-updated_at')
+
+        return qs
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

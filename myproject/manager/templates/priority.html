@@ -4,10 +4,24 @@
 
 {% block main_content %}
 <div class="main {% if not selected_priority %}expanded{% endif %}">
+    <div class="list-title-area">
+        <h2>Priorities</h2>
+    </div>
+    <form method="GET" class="task-controls">
+        <select name="sort" onchange="this.form.submit()">
+            <option value="">Sort by</option>
+            <option value="name" {% if request.GET.sort == "name" %}selected{% endif %}>
+                Name
+            </option>
+            <option value="created" {% if request.GET.sort == "created" %}selected{% endif %}>
+                Date Created
+            </option>
+            <option value="updated" {% if request.GET.sort == "updated" %}selected{% endif %}>
+                Last Updated
+            </option>
+        </select>
+    </form>
     <div class="list">
-        <div class="list-title-area">
-            <h2>Priorities</h2>
-        </div>
         {% for priority in priorities%}
         <div class="cards">
             <a href="?selected={{ priority.id }}" class="link">
