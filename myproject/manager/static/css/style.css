@@ -426,6 +426,23 @@ body {
     font-family: "Segoe UI", sans-serif;
 }
 
+.sidebar-right::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar-right::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.sidebar-right::-webkit-scrollbar-thumb {
+    background: #353535;
+    border-radius: 10px;
+}
+
+.sidebar-right::-webkit-scrollbar-thumb:hover {
+    background: #454545;
+}
+
 .sidebar-header {
     position: relative;
     padding: 6px 4px 16px;
@@ -600,6 +617,23 @@ body {
     transition:
         border-color 0.15s ease,
         background-color 0.15s ease;
+}
+
+.inputarea::-webkit-scrollbar {
+    width: 6px;
+}
+
+.inputarea::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.inputarea::-webkit-scrollbar-thumb {
+    background: #353535;
+    border-radius: 10px;
+}
+
+.inputarea::-webkit-scrollbar-thumb:hover {
+    background: #454545;
 }
 
 .title-input:hover {
