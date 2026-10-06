@@ -1,0 +1,78 @@
+    {% extends 'base.html' %}
+
+{% block title %}My SubTasks{% endblock %}
+
+{% block main_content %}
+<div class="main {% if not selected_subtask %}expanded{% endif %}">
+    <div class="list">
+        <div class="list-title-area">
+            <h2>Subtasks</h2>
+        </div>
+        {% for subtask in subtasks %}
+        <div class="cards">
+            <a href="?selected={{ subtask.id }}" class="link">
+                <span class="title">{{ subtask.title }}</span>
+
+                <span class="meta">
+                    <span class="parent">{{ subtask.parent_task }}</span>
+                    <span class="status">{{ subtask.status }}</span>
+                </span>
+            </a>
+        </div>
+        {% empty %}
+            <p style="color: #a0a0a0; padding: 10px;">No subtasks yet.</p>
+        {% endfor %}
+    </div>
+    <div class="add">
+        <form method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="create">
+            <input type="text" name="title" placeholder="+ Add a subtask" required>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block right_sidebar %}
+{% if selected_subtask %}
+<div class="sidebar-right">
+    <a href="?" class="close-sidebar-btn">&times;</a>
+    <h3>Subtask Details</h3>
+        <form method="POST" class="sidebar-form">
+            {% csrf_token %}
+            <input type="hidden" name="subtask_id" value="{{ selected_subtask.id }}">
+            <div class="form-group">
+                <label>Title</label>
+                <textarea name="title" class="inputarea">{{ selected_subtask.title }}</textarea>
+            </div>
+            <div class="form-group">
+                <label>Status</label>
+                <select name="status">
+                    {% for value, label in status_choices %}
+                        <option value="{{ value }}"
+                            {% if selected_subtask.status == value %}selected{% endif %}>
+                            {{ label }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <label>Parent Task</label>
+            <select name="task">
+                <option value="">Select Task</option>
+                {% for t in tasks %}
+                    <option value="{{ t.id }}"
+                        {% if selected_subtask.parent_task_id == t.id %}selected{% endif %}>
+                        {{ t.title }}
+                    </option>
+                {% endfor %}
+            </select>
+            <button type="submit" name="action" value="update" class="save-btn">Save Changes</button>
+            <div class="delete-container">
+                <button type="submit" name="action" value="delete" class="delete-btn">Delete Task</button>
+            </div>
+        </form>
+    
+
+</div>
+{% endif %} 
+{% endblock %}

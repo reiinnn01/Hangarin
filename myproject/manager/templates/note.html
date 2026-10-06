@@ -1,0 +1,66 @@
+    {% extends 'base.html' %}
+
+{% block title %}My Notes{% endblock %}
+
+{% block main_content %}
+<div class="main {% if not selected_note %}expanded{% endif %}">
+    <div class="list">
+        <div class="list-title-area">
+            <h2>Notes</h2>
+        </div>
+        {% for note in notes %}
+        <div class="cards">
+            <a href="?selected={{ note.id }}" class="link">
+                <span class="content">{{ note.content }}</span>
+                <span class="meta">
+                    <span class="task">{{ note.task }}</span>
+                </span>
+            </a>
+        </div>
+        {% empty %}
+            <p style="color: #a0a0a0; padding: 10px;">No Notes yet.</p>
+        {% endfor %}
+    </div>
+    <div class="add">
+        <form method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="create">
+            <input type="text" name="content" placeholder="+ Add a note" required>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block right_sidebar %}
+{% if selected_note %}
+<div class="sidebar-right">
+    <a href="?" class="close-sidebar-btn">&times;</a>
+    <h3>Note Details</h3>
+        <form method="POST" class="sidebar-form">
+            {% csrf_token %}
+            <input type="hidden" name="note_id" value="{{ selected_note.id }}">
+            <div class="form-group">
+                <label>Content</label>
+                <textarea name="content" class="inputarea">{{ selected_note.content }}</textarea>
+            </div>
+            <div class="form-group">
+                <label>Task</label>
+                <select name="task">
+                    <option value="">Select Task</option>
+                    {% for t in tasks %}
+                        <option value="{{ t.id }}" {% if selected_note.task_id == t.id %}selected{% endif %}>
+                            {{ t.title }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" name="action" value="update" class="save-btn">Save Changes</button>
+            <div class="delete-container">
+                <button type="submit" name="action" value="delete" class="delete-btn">Delete Task</button>
+            </div>
+        </form>
+    
+
+</div>
+{% endif %} 
+{% endblock %}

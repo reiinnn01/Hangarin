@@ -1,0 +1,49 @@
+    {% extends 'base.html' %}
+
+{% block title %}My Priorities{% endblock %}
+
+{% block main_content %}
+<div class="main {% if not selected_priority %}expanded{% endif %}">
+    <div class="list">
+        <div class="list-title-area">
+            <h2>Priorities</h2>
+        </div>
+        {% for priority in priorities%}
+        <div class="cards">
+            <a href="?selected={{ priority.id }}" class="link">
+                <span class="name">{{ priority.priority_name }}</span>
+            </a>
+        </div>
+        {% empty %}
+            <p style="color: #a0a0a0; padding: 10px;">No Priorities yet.</p>
+        {% endfor %}
+    </div>
+    <div class="add">
+        <form method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="create">
+            <input type="text" name="name" placeholder="+ Add a priority" required>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block right_sidebar %}
+{% if selected_priority %}
+<div class="sidebar-right">
+    <a href="?" class="close-sidebar-btn">&times;</a>
+    <h3>Priority Details</h3>
+        <form method="POST" class="sidebar-form">
+            {% csrf_token %}
+            <input type="hidden" name="priority_id" value="{{ selected_priority.id }}">
+            <div class="form-group"><label>Name</label><input type="text" name="priority_name" value="{{ selected_priority.priority_name}}"></div>
+            <button type="submit" name="action" value="update" class="save-btn">Save Changes</button>
+            <div class="delete-container">
+                <button type="submit" name="action" value="delete" class="delete-btn">Delete Category</button>
+            </div>
+        </form>
+    
+
+</div>
+{% endif %} 
+{% endblock %}

@@ -1,5 +1,11 @@
 from django.db import models
 
+STATUS_CHOICES = [
+    ("Pending", "Pending"),
+    ("In Progress", "In Progress"),
+    ("Completed", "Completed"),
+]
+
 class basemodel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, db_index=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -31,12 +37,8 @@ class Task(basemodel):
     deadline = models.DateField(auto_now_add=True)
     status = models.CharField(
     max_length=50,
-    choices=[
-        ("Pending", "Pending"),
-        ("In Progress", "In Progress"),
-        ("Completed", "Completed"),
-    ],
-    default="pending"
+    choices=STATUS_CHOICES,
+    default="Pending"
     )
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     priority = models.ForeignKey(Priority, on_delete=models.CASCADE)
@@ -46,22 +48,19 @@ class Task(basemodel):
     
 
 class Note(basemodel):
-    task = models.ForeignKey(Task, on_delete=models.CASCADE)
+    task = models.ForeignKey(Task, on_delete=models.CASCADE, null=True)
     content = models.TextField(blank=True, null=True)
 
     def __str__(self):
         return self.content
 
 class SubTask(basemodel):
-    parent_task = models.ForeignKey(Task, on_delete=models.CASCADE)
+    parent_task = models.ForeignKey(Task, on_delete=models.CASCADE, null=True)
     title = models.CharField(max_length=150)
-    status = models.CharField(max_length=50,
-    choices=[
-            ("Pending", "Pending"),
-            ("In Progress", "In Progress"),
-            ("Completed", "Completed"),
-    ],
-    default="pending"
+    status = models.CharField(
+    max_length=50,
+    choices=STATUS_CHOICES,
+    default="Pending"
     )
 
     def __str__(self):

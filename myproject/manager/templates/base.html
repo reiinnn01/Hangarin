@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Task App{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+
+        <div class="sidebar-left">
+            <details class="user-profile-dropdown">
+                <summary class="user-profile">
+                    <img src="{% static 'Flower_GIF.gif' %}" class="profile-pic" alt="User Avatar">
+                    <div class="user-info">
+                        <p class="username">{{ request.user.username }}</p>
+                        <p class="email">{{ request.user.email }}</p>
+                    </div>
+                </summary>
+                <div class="dropdown-menu">
+                    <a href="{% url 'account_logout' %}">Logout</a>
+                </div>
+            </details>
+        
+            <div class="options">
+
+                <a href="{% url 'task-list' %}"
+                   class="{% if request.resolver_match.url_name == 'task-list' %}active{% endif %}">
+                    Task
+                </a>
+            
+                <a href="{% url 'subtask-list' %}"
+                   class="{% if request.resolver_match.url_name == 'subtask-list' %}active{% endif %}">
+                    Sub Task
+                </a>
+            
+                <a href="{% url 'note-list' %}"
+                   class="{% if request.resolver_match.url_name == 'note-list' %}active{% endif %}">
+                    Note
+                </a>
+            
+                <a href="{% url 'priority-list' %}"
+                   class="{% if request.resolver_match.url_name == 'priority-list' %}active{% endif %}">
+                    Priority
+                </a>
+            
+                <a href="{% url 'category-list' %}"
+                   class="{% if request.resolver_match.url_name == 'category-list' %}active{% endif %}">
+                    Category
+                </a>
+            
+            </div>
+        </div>
+
+        
+        {% block main_content %}
+        {% endblock %}
+        
+        {% block right_sidebar %}
+        {% endblock %}
+        
+    </div>
+</body>
+</html>
+

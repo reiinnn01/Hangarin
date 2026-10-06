@@ -1,0 +1,50 @@
+    {% extends 'base.html' %}
+
+{% block title %}My Categories{% endblock %}
+
+{% block main_content %}
+<div class="main {% if not selected_category %}expanded{% endif %}">
+    <div class="list">
+        <div class="list-title-area">
+            <h2>Categories</h2>
+        </div>
+        {% for category in categories%}
+        <div class="cards">
+            <a href="?selected={{ category.id }}" class="link">
+                <span class="name">{{ category.category_name }}</span>
+            </a>
+        </div>
+        {% empty %}
+            <p style="color: #a0a0a0; padding: 10px;">No Categories yet.</p>
+        {% endfor %}
+    </div>
+    <div class="add">
+        <form method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="create">
+            <input type="text" name="name" placeholder="+ Add a category" required>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block right_sidebar %}
+{% if selected_category %}
+<div class="sidebar-right">
+    <a href="?" class="close-sidebar-btn">&times;</a>
+    <h3>Category Details</h3>
+    
+        <form method="POST" class="sidebar-form">
+            {% csrf_token %}
+            <input type="hidden" name="category_id" value="{{ selected_category.id }}">
+            <div class="form-group"><label>Name</label><input type="text" name="category_name" value="{{ selected_category.category_name}}"></div>
+            <button type="submit" name="action" value="update" class="save-btn">Save Changes</button>
+            <div class="delete-container">
+                <button type="submit" name="action" value="delete" class="delete-btn">Delete Category</button>
+            </div>
+        </form>
+    
+
+</div>
+{% endif %} 
+{% endblock %}

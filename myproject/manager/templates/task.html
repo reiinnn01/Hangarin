@@ -1,0 +1,104 @@
+    {% extends 'base.html' %}
+
+{% block title %}My Tasks{% endblock %}
+
+{% block main_content %}
+<div class="main {% if not selected_task %}expanded{% endif %}">
+    <div class="list">
+        <div class="list-title-area">
+            <h2>Tasks</h2>
+        </div>
+        {% for task in tasks %}
+        <div class="cards">
+            <a href="?selected={{ task.id }}" class="link">
+                <span class="title">{{ task.title }}</span>
+
+                <span class="meta">
+                    <span class="deadline">{{ task.deadline }}</span>
+                    <span class="description">{{ task.description }}</span>
+                    <span class="priority">{{ task.priority }}</span>
+                    <span class="category">{{ task.category }}</span>
+                    <span class="status">{{ task.status }}</span>
+                </span>
+            </a>
+        </div>
+        {% empty %}
+            <p style="color: #a0a0a0; padding: 10px;">No tasks yet.</p>
+        {% endfor %}
+    </div>
+    <div class="add">
+        <form method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="create">
+            <input type="text" name="title" placeholder="+ Add a task" required>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block right_sidebar %}
+{% if selected_task %}
+<div class="sidebar-right">
+    
+    <h3>Task Details</h3>
+    <a href="?" class="close-sidebar-btn">&times;</a>
+        <form method="POST" class="sidebar-form">
+            {% csrf_token %}
+            <input type="hidden" name="task_id" value="{{ selected_task.id }}">
+            <div class="form-group">
+                <label>Title</label>
+                <textarea name="title" class="inputarea">{{ selected_task.title }}</textarea>
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <textarea name="description" class="inputarea">{{ selected_task.description }}</textarea>
+            </div>
+            <div class="form-group">
+                <label>Status</label>
+                <select name="status">
+                    {% for value, label in status_choices %}
+                        <option value="{{ value }}"
+                            {% if selected_task.status == value %}selected{% endif %}>
+                            {{ label }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Priority</label>
+                <select name="priority">
+                    <option value="">Select Priority</option>
+                    {% for p in priorities %}
+                        <option value="{{ p.id }}" {% if selected_task.priority_id == p.id %}selected{% endif %}>
+                            {{ p.priority_name }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Category</label>
+                <select name="category">
+                    <option value="">Select category</option>
+                    {% for c in categories %}
+                        <option value="{{ c.id }}" {% if selected_task.category_id == c.id %}selected{% endif %}>
+                            {{ c.category_name }}
+                        </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Deadline</label>
+                <input type="date"
+                       name="deadline"
+                       value="{{ selected_task.deadline|date:'Y-m-d' }}">
+            </div>
+            <button type="submit" name="action" value="update" class="save-btn">Save Changes</button>
+            <div class="delete-container">
+                <button type="submit" name="action" value="delete" class="delete-btn">Delete Task</button>
+            </div>
+        </form>
+    
+
+</div>
+{% endif %} 
+{% endblock %}

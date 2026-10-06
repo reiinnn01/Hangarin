@@ -1,0 +1,32 @@
+{% extends "auth_base.html" %}
+
+{% block title %}Complete Sign Up{% endblock %}
+
+{% block content %}
+
+<h1>Almost there!</h1>
+
+<p class="auth-subtitle">
+    Choose a username to finish creating your account.
+</p>
+
+<form method="post">
+    {% csrf_token %}
+
+    {{ form.non_field_errors }}
+
+    <input type="hidden" name="email" value="{{ form.email.value|default:'' }}">
+
+    <div class="form-group">
+        {{ form.username.label_tag }}
+        {{ form.username }}
+        {{ form.username.errors }}
+        {{ form.errors }}
+    </div>
+
+    <button type="submit" class="auth-button">
+        Create account
+    </button>
+</form>
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{% load static %}
+{% load socialaccount %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %}Authentication{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+</head>
+
+<body>
+
+    <main class="auth-container">
+        <div class="auth-card">
+
+            {% block content %}
+            {% endblock %}
+
+        </div>
+    </main>
+
+</body>
+</html>
+
