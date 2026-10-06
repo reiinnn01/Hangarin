@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
-from .views import TaskView, SubTaskView, NoteView, CategoryView, PriorityView
+from .views import TaskView, SubTaskView, NoteView, CategoryView, PriorityView, GlobalSearchView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -11,4 +11,5 @@ urlpatterns = [
     path('Notes/', NoteView.as_view(), name='note-list')    ,
     path('Categories/', CategoryView.as_view(), name='category-list'),
     path('Priorities/', PriorityView.as_view(), name='priority-list'),
+    path("Search/", GlobalSearchView.as_view(), name="global-search"),
 ]   

@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block title %}Search{% endblock %}
+
+{% block main_content %}
+
+<div class="main expanded">
+    <div class="list-title-area">
+        <h2>
+            {% if query %}
+                Search results for "{{ query }}"
+            {% else %}
+                Search
+            {% endif %}
+        </h2>
+    </div>
+    
+    <div class="list">
+        {% if query %}
+            {% for task in tasks %}
+                <div class="cards">
+                    <a href="{% url 'task-list' %}?selected={{ task.id }}" class="link">
+                        <span class="title">{{ task.title }}</span>
+                        <span class="meta">
+                            <span>Task</span>
+                            <span>{{ task.status }}</span>
+                        </span>
+                    </a>
+                </div>
+            {% endfor %}
+            {% for subtask in subtasks %}
+                <div class="cards">
+                    <a href="{% url 'subtask-list' %}?selected={{ subtask.id }}" class="link">
+                        <span class="title">{{ subtask.title }}</span>
+                        <span class="meta">
+                            <span>SubTask</span>
+                            <span>{{ subtask.status }}</span>
+                        </span>
+                    </a>
+                </div>
+            {% endfor %}
+            {% for note in notes %}
+                <div class="cards">
+                    <a href="{% url 'note-list' %}?selected={{ note.id }}" class="link">
+                        <span class="title">{{ note.content }}</span>
+                        <span class="meta">
+                            <span>Note</span>
+                        </span>
+                    </a>
+                </div>
+            {% endfor %}
+            {% for category in categories %}
+                <div class="cards">
+                    <a href="{% url 'category-list' %}?selected={{ category.id }}" class="link">
+                        <span class="title">{{ category.category_name }}</span>
+                        <span class="meta">
+                            <span>Category</span>
+                        </span>
+                    </a>
+                </div>
+            {% endfor %}
+            {% for priority in priorities %}
+                <div class="cards">
+                    <a href="{% url 'priority-list' %}?selected={{ priority.id }}" class="link">
+                        <span class="title">{{ priority.priority_name }}</span>
+                        <span class="meta">
+                            <span>Priority</span>
+                        </span>
+                    </a>
+                </div>
+            {% endfor %}
+            {% if not tasks and not subtasks and not notes and not categories and not priorities %}
+                <p class="empty-message">No results found.</p>
+            {% endif %}
+        {% else %}
+            <p class="empty-message">Type something to search.</p>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

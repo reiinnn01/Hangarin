@@ -3,7 +3,49 @@ from .models import Task, SubTask, Note, Priority, Category, STATUS_CHOICES
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.views.generic.list import ListView
+from django.views.generic import TemplateView
 
+class GlobalSearchView(LoginRequiredMixin, TemplateView):
+    template_name = "search.html"
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        query = self.request.GET.get("q", "").strip()
+
+        context["query"] = query
+        context["tasks"] = []
+        context["subtasks"] = []
+        context["notes"] = []
+        context["categories"] = []
+        context["priorities"] = []
+
+        if query:
+            context["tasks"] = Task.objects.filter(
+                Q(title__icontains=query) |
+                Q(description__icontains=query) |
+                Q(status__icontains=query)
+            )
+
+            context["subtasks"] = SubTask.objects.filter(
+                Q(title__icontains=query) |
+                Q(status__icontains=query)
+            )
+
+            context["notes"] = Note.objects.filter(
+                Q(content__icontains=query)
+            )
+
+            context["categories"] = Category.objects.filter(
+                Q(category_name__icontains=query)
+            )
+
+            context["priorities"] = Priority.objects.filter(
+                Q(priority_name__icontains=query)
+            )
+
+        return context
+    
 class TaskView(LoginRequiredMixin, ListView):
     model = Task
     context_object_name = 'tasks'
