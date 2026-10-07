@@ -246,9 +246,13 @@ body {
 }
 
 .auth-logo {
-  width: 64px;
-  height: 64px;
+  display: block;
+  width: 64px !important;
+  height: 64px !important;
+  max-width: 64px !important;
+  max-height: 64px !important;
   object-fit: contain;
+  margin: 0 auto 10px;
   border-radius: 14px;
 }
 
