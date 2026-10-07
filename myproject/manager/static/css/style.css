@@ -695,8 +695,8 @@ body {
 @media (min-width: 769px) and (max-width: 1000px) {
 
     .main {
-        margin-top: 15px;
-        height: calc(100vh - 30px);
+        margin-top: 5px;
+        height: calc(100vh - 50px);
         min-height: 0;
     }
 
