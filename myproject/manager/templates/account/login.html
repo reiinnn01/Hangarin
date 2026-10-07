@@ -1,10 +1,17 @@
 
 {% extends "auth_base.html" %}
 {% load socialaccount %}
+{% load static %}
 {% block title %}Login{% endblock %}
 
+
 {% block content %}
-<p class="auth-subtitle">Log in to your account</p>
+<div class="auth-brand">
+    <img src="{% static 'icons/icon-192.png' %}" alt="Hangarin" class="auth-logo">
+
+    <h1>Hangarin</h1>
+    <p class="auth-subtitle">Log in to your account</p>
+</div>
 
 <div class="social-buttons">
     <a href="{% provider_login_url 'google' %}" class="social-button google">

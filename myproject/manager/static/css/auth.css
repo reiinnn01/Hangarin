@@ -238,5 +238,26 @@ body {
 }
 
 .github-icon {
-    filter: invert(1);
+  filter: invert(1);
+}
+
+.auth-brand {
+  text-align: center;
+}
+
+.auth-logo {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  border-radius: 14px;
+}
+
+.auth-brand h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.auth-brand .auth-subtitle {
+  margin-top: 6px;
 }
