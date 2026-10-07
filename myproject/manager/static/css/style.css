@@ -444,7 +444,9 @@ body {
 }
 
 .sidebar-header {
-    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     padding: 6px 4px 16px;
     margin-bottom: 22px;
     border-bottom: 1px solid #323232;
@@ -459,20 +461,20 @@ body {
 }
 
 .close-sidebar-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 30px;
     height: 30px;
+    margin: 0;
+    padding: 0;
     color: #888888;
     text-decoration: none;
     font-family: "Segoe UI", sans-serif;
     font-size: 24px;
     line-height: 1;
     border-radius: 7px;
+    flex-shrink: 0;
     transition:
         background-color 0.15s ease,
         color 0.15s ease;

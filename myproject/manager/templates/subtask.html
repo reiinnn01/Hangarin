@@ -68,8 +68,10 @@
 {% block right_sidebar %}
 {% if selected_subtask %}
 <div class="sidebar-right">
-    <a href="?" class="close-sidebar-btn">&times;</a>
-    <h3>Subtask Details</h3>
+    <div class="sidebar-header">
+        <h3>Subtask Details</h3>
+        <a href="?" class="close-sidebar-btn">&times;</a>
+    </div>
         <form method="POST" class="sidebar-form">
             {% csrf_token %}
             <input type="hidden" name="subtask_id" value="{{ selected_subtask.id }}">

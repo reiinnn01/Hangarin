@@ -85,8 +85,10 @@
 {% if selected_task %}
 <div class="sidebar-right">
     
-    <h3>Task Details</h3>
-    <a href="?" class="close-sidebar-btn">&times;</a>
+    <div class="sidebar-header">
+        <h3>Task Details</h3>
+        <a href="?" class="close-sidebar-btn">&times;</a>
+    </div>
         <form method="POST" class="sidebar-form">
             {% csrf_token %}
             <input type="hidden" name="task_id" value="{{ selected_task.id }}">
