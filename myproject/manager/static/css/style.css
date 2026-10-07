@@ -416,7 +416,7 @@ body {
     right: 0;
     top: 0;
     width: 320px;
-    height: 100vh;
+    height: 100dvh;
     padding: 18px 20px;
     box-sizing: border-box;
     background-color: #202020;
@@ -689,5 +689,19 @@ body {
     }
     .sidebar-right {
         width: 300px;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1000px) {
+
+    .main {
+        margin-top: 15px;
+        height: calc(100vh - 30px);
+        min-height: 0;
+    }
+
+    .sidebar-right {
+        height: 100dvh;
+        padding-bottom: 30px;
     }
 }
