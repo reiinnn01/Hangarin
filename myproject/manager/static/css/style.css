@@ -708,4 +708,8 @@ body {
     .link {
         padding: 10px 15px;
     }
+
+    .auth-button {
+    margin-bottom: 15px;
+    }
 }
