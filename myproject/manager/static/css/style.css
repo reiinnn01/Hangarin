@@ -696,12 +696,16 @@ body {
 
     .main {
         margin-top: 5px;
-        height: calc(100vh - 50px);
+        height: calc(100vh - 70px);
         min-height: 0;
     }
 
     .sidebar-right {
         height: 100dvh;
         padding-bottom: 30px;
+    }
+
+    .link {
+        padding: 10px 15px;
     }
 }
